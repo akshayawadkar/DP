@@ -1,0 +1,32 @@
+package com.zerooneknapsack;
+
+public class _4_SubsetSum {
+
+    public static void main(String[] args) {
+
+        int[] arr = {3, 34, 4, 12, 5, 2};
+        int sum = 9;
+        int n = arr.length;
+
+        System.out.println(solve(arr, sum, n));
+    }
+
+    private static boolean solve(int[] arr, int sum, int n) {
+
+
+        if(n == 0 || sum < 0){
+            return false;
+        }
+
+        if(sum == 0){
+            return true;
+        }
+
+        if(arr[n - 1] <= sum){
+            return solve(arr, sum, n - 1) || solve(arr, sum - arr[n - 1], n - 1);
+        }else{
+            return solve(arr, sum, n - 1);
+        }
+
+    }
+}
