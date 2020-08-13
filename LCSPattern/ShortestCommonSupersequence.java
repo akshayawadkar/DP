@@ -2,7 +2,7 @@ package com.LCSPattern;
 
 import java.util.Arrays;
 
-public class LCS_Memoization {
+public class ShortestCommonSupersequence {
     static int[][] dp;
     private static int solve(String X, String Y){
         dp = new int[X.length() + 1][Y.length() + 1];
@@ -11,7 +11,8 @@ public class LCS_Memoization {
         }
 
         int result = helper(X, Y, X.length(), Y.length());
-        return result;
+
+        return (X.length() + Y.length()) - result;
     }
 
     private static int helper(String X, String Y, int m, int n){
@@ -29,7 +30,7 @@ public class LCS_Memoization {
             return dp[m][n] = 1 + helper(X, Y, m - 1, n - 1);
         }else{
             return dp[m][n] = Math.max(helper(X, Y, m - 1, n),
-                            helper(X, Y, m, n - 1));
+                    helper(X, Y, m, n - 1));
         }
     }
 
@@ -37,8 +38,8 @@ public class LCS_Memoization {
 //        String X = "abcdgh";
 //        String Y = "abedfhr";
 //
-        String X = "abac";
-        String Y = "cab";
+        String X = "AGGTAB";
+        String Y = "GXTXAYB";
         System.out.println(solve(X, Y));
     }
 }
